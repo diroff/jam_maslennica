@@ -200,6 +200,7 @@ MonoBehaviour:
   positionOffsetMill: {x: 0, y: 0.748, z: -1.19}
   positionOffsetSmallHouse: {x: 0, y: 0.499, z: -1.431}
   positionOffsetTree: {x: 0, y: 0.674, z: -1.104}
+  positionOffsetMaslo: {x: 0, y: 0, z: 0}
   rotationHouseOffset: {x: 3.276, y: -34.955, z: 1.852}
   building: {fileID: -8575075203077317785, guid: bd3b1a402d125314ea2032d0a04fa742, type: 3}
 --- !u!114 &6003816017472598994
@@ -216,4 +217,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emptyMaterial: {fileID: 2100000, guid: 85f05501c97abc44d8659e984ebc8056, type: 2}
   filledMaterial: {fileID: 2100000, guid: cf553a74777440e40824ca8011fbaa5e, type: 2}
+  buffedMaterial: {fileID: 2100000, guid: 6cdd9a94fa6188c4b844991944d36b1d, type: 2}
   tileRenderer: {fileID: 8527357121283346556}

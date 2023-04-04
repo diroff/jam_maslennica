@@ -217,4 +217,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emptyMaterial: {fileID: 2100000, guid: 85f05501c97abc44d8659e984ebc8056, type: 2}
   filledMaterial: {fileID: 2100000, guid: cf553a74777440e40824ca8011fbaa5e, type: 2}
+  buffedMaterial: {fileID: 2100000, guid: 6cdd9a94fa6188c4b844991944d36b1d, type: 2}
   tileRenderer: {fileID: 8527357121283346556}

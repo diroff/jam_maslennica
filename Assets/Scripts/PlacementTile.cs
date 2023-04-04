@@ -1,52 +1,41 @@
 using UnityEngine;
 
-	/// <summary>
-	/// States the placement tile can be in
-	/// </summary>
-	public enum PlacementTileState
-	{
-		Filled,
-		Empty
-	}
+public enum PlacementTileState
+{
+	Filled,
+	Empty,
+	Buffed
+}
 
-	/// <summary>
-	/// Simple class to illustrate tile placement locations
-	/// </summary>
-	public class PlacementTile : MonoBehaviour
-	{
-		/// <summary>
-		/// Material to use when this tile is empty
-		/// </summary>
-		public Material emptyMaterial;
-		/// <summary>
-		/// Material to use when this tile is filled
-		/// </summary>
-		public Material filledMaterial;
-		/// <summary>
-		/// The renderer whose material we're changing
-		/// </summary>
-		public Renderer tileRenderer;
+public class PlacementTile : MonoBehaviour
+{
+	public Material emptyMaterial;
+	public Material filledMaterial;
+	public Material buffedMaterial;
 
-		/// <summary>
-		/// Update the state of this placement tile
-		/// </summary>
-		public void SetState(PlacementTileState newState)
+	public Renderer tileRenderer;
+
+	public void SetState(PlacementTileState newState)
+	{
+		switch (newState)
 		{
-			switch (newState)
-			{
-				case PlacementTileState.Filled:
-					if (tileRenderer != null && filledMaterial != null)
-					{
-						tileRenderer.sharedMaterial = filledMaterial;
-					}
-					break;
-				case PlacementTileState.Empty:
-					if (tileRenderer != null && emptyMaterial != null)
-					{
-						tileRenderer.sharedMaterial = emptyMaterial;
-					}
-					break;
-			}
+			case PlacementTileState.Filled:
+				if (tileRenderer != null && filledMaterial != null)
+					tileRenderer.sharedMaterial = filledMaterial;
+
+				break;
+
+			case PlacementTileState.Empty:
+				if (tileRenderer != null && emptyMaterial != null)
+					tileRenderer.sharedMaterial = emptyMaterial;
+
+				break;
+
+			case PlacementTileState.Buffed:
+				if (tileRenderer != null & buffedMaterial != null)
+					tileRenderer.sharedMaterial = buffedMaterial;
+
+				break;
 		}
 	}
-
+}
