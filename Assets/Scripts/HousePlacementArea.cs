@@ -140,7 +140,7 @@ namespace Flower
 
 					m_Tiles[x, y] = newTile;
 					newTile.SetState(PlacementTileState.Empty);
-					newTile.TileIndex = new Vector2Int(y, x);
+					newTile.TileIndex = new Vector2Int(x, y);
 				}
 			}
 		}

@@ -14,6 +14,7 @@ public class Node : MonoBehaviour
     public Vector3 rotationHouseOffset;
 
     private Vector2Int _indexOfNode;
+    private bool _hasEffect = false;
 
     [Header("Optional")]
 
@@ -81,6 +82,7 @@ public class Node : MonoBehaviour
     public void PleaseWork()
     {
         rend.material.color = new Color(15, 15, 15);
+        _hasEffect = true;
     }
 
     void OnMouseDown()
@@ -103,6 +105,10 @@ public class Node : MonoBehaviour
     {
         if(EventSystem.current.IsPointerOverGameObject())
             return;
+
+        if (_hasEffect)
+            return;
+
         rend.material.color = hoverColor; 
         // if(!buildManager.CanBuild)
         //     return;
@@ -119,6 +125,9 @@ public class Node : MonoBehaviour
 
     void OnMouseExit()
     {
+        if (_hasEffect)
+            return;
+
         rend.material.color = startColor;
     }
 }

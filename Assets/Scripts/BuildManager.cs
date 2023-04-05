@@ -58,11 +58,28 @@ public class BuildManager : MonoBehaviour
         {
             building.transform.position = transform.position + node.GetSmallHousePosition();
             building.transform.Rotate(rotationSmallHouseOffset.x, rotationSmallHouseOffset.y, rotationSmallHouseOffset.z);
+            AddSquareEffect(node, 2);
         }
         
         node.building = building;
         node.building.transform.parent = node.transform;
-        Debug.Log(node.GetNodeIndex());
+    }
+
+    private void AddSquareEffect(Node startPoint, int countMultiply) //countMultiply = количество слоев квадрата
+    {
+        for (int i = startPoint.GetNodeIndex().x - countMultiply; i <= startPoint.GetNodeIndex().x + countMultiply; i++)
+        {
+            if (i < 0 || i > Area.dimensions.x - 1)
+                continue;
+
+            for (int j = startPoint.GetNodeIndex().y - countMultiply; j <= startPoint.GetNodeIndex().y + countMultiply; j++)
+            {
+                if (j < 0 || j > Area.dimensions.y - 1)
+                    continue;
+
+                Area.m_Tiles[i, j].TakeNode().PleaseWork();
+            }
+        }
     }
 
     public void SelectHouseToBuild(HouseBlueprint house)

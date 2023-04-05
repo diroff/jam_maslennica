@@ -40,4 +40,9 @@ public class PlacementTile : MonoBehaviour
 				break;
 		}
 	}
+
+	public Node TakeNode()
+	{
+		return GetComponent<Node>();
+	}
 }
