@@ -14,6 +14,8 @@ public class PlacementTile : MonoBehaviour
 	public Material buffedMaterial;
 
 	public Renderer tileRenderer;
+	[HideInInspector]
+	public Vector2Int TileIndex;
 
 	public void SetState(PlacementTileState newState)
 	{

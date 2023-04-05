@@ -1,17 +1,20 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Node : MonoBehaviour
 {
     [SerializeField] private Color hoverColor;
+
     public Vector3 positionOffsetHouse;
     public Vector3 positionOffsetMill;
     public Vector3 positionOffsetSmallHouse;
     public Vector3 positionOffsetTree;
     public Vector3 positionOffsetMaslo;
     public Vector3 rotationHouseOffset;
-    
-    
+
+    private Vector2Int _indexOfNode;
+
     [Header("Optional")]
 
     public HouseBlueprint building;
@@ -45,13 +48,18 @@ public class Node : MonoBehaviour
     {
         return transform.position + positionOffsetMaslo;
     }
-    
-    
+
+    public HouseBlueprint GetHouse()
+    {
+        return building;
+    }
+
     void Start()
     {
         rend = GetComponentInChildren<MeshRenderer>();
         startColor = rend.material.color;
         buildManager = BuildManager.instance;
+
         if(building != null)
         {
             building = (HouseBlueprint)Instantiate(building, GetTreePosition(), Quaternion.identity);
@@ -61,7 +69,18 @@ public class Node : MonoBehaviour
                 building.transform.Rotate(rotationHouseOffset.x, rotationHouseOffset.y, rotationHouseOffset.z);
             }
         }
-        
+
+        _indexOfNode = GetComponent<PlacementTile>().TileIndex;
+    }
+
+    public Vector2Int GetNodeIndex()
+    {
+        return _indexOfNode;
+    }
+
+    public void PleaseWork()
+    {
+        rend.material.color = new Color(15, 15, 15);
     }
 
     void OnMouseDown()

@@ -2,19 +2,19 @@ using System;
 using UnityEngine;
 namespace Flower
 {
-    [RequireComponent(typeof(BoxCollider))]
-public class HousePlacementArea : MonoBehaviour
-{
-    public PlacementTile placementTilePrefab;
-    public Vector2Int dimensions;
-    float m_InvGridSize;
-    public float gridSize = 1;
-    PlacementTile[,] m_Tiles;
-    bool[,] m_AvailableCells;
-    ///<param name="worldLocation"><see cref="Vector3"/> indicating world space coordinates to convert.</param>
-    ///<param name="sizeOffset"><see cref="Vector2"/> indicating size of object to center.</param>
+	[RequireComponent(typeof(BoxCollider))]
+	public class HousePlacementArea : MonoBehaviour
+	{
+		public PlacementTile placementTilePrefab;
+		public Vector2Int dimensions;
+		float m_InvGridSize;
+		public float gridSize = 1;
+		public PlacementTile[,] m_Tiles;
+		bool[,] m_AvailableCells;
+		///<param name="worldLocation"><see cref="Vector3"/> indicating world space coordinates to convert.</param>
+		///<param name="sizeOffset"><see cref="Vector2"/> indicating size of object to center.</param>
 
-    public Vector2 WorldToGrid(Vector3 worldLocation, Vector2Int sizeOffset)
+		public Vector2 WorldToGrid(Vector3 worldLocation, Vector2Int sizeOffset)
 		{
 			Vector3 localLocation = transform.InverseTransformPoint(worldLocation);
 
@@ -30,7 +30,7 @@ public class HousePlacementArea : MonoBehaviour
 
 			return new Vector2Int(xPos, yPos);
 		}
-        /// <summary>
+		/// <summary>
 		/// Returns the world coordinates corresponding to a grid location.
 		/// </summary>
 		/// <param name="gridPosition">The coordinate in grid space</param>
@@ -45,13 +45,13 @@ public class HousePlacementArea : MonoBehaviour
 			return transform.TransformPoint(localPos);
 		}
 
-        /// <summary>
+		/// <summary>
 		/// Sets a cell range as being occupied by a tower.
 		/// </summary>
 		/// <param name="gridPos">The grid location</param>
 		/// <param name="size">The size of the item</param>
 
-        public void Occupy(Vector2Int gridPos, Vector2Int size)
+		public void Occupy(Vector2Int gridPos, Vector2Int size)
 		{
 			Vector2Int extents = gridPos + size;
 
@@ -84,7 +84,7 @@ public class HousePlacementArea : MonoBehaviour
 			}
 		}
 
-        protected virtual void Awake()
+		protected virtual void Awake()
 		{
 			ResizeCollider();
 
@@ -115,36 +115,42 @@ public class HousePlacementArea : MonoBehaviour
 		/// </summary>
 		protected void SetUpGrid()
 		{
-			PlacementTile tileToUse;
-			tileToUse = placementTilePrefab;
+			PlacementTile tileToUse = placementTilePrefab;
 
-			if (tileToUse != null)
+			if (tileToUse == null)
+				return;
+
+			// Create a container that will hold the cells.
+			var tilesParent = new GameObject("Container");
+			tilesParent.transform.parent = transform;
+			tilesParent.transform.localPosition = Vector3.zero;
+			tilesParent.transform.localRotation = Quaternion.identity;
+			m_Tiles = new PlacementTile[dimensions.x, dimensions.y];
+
+			for (int y = 0; y < dimensions.y; y++)
 			{
-				// Create a container that will hold the cells.
-				var tilesParent = new GameObject("Container");
-				tilesParent.transform.parent = transform;
-				tilesParent.transform.localPosition = Vector3.zero;
-				tilesParent.transform.localRotation = Quaternion.identity;
-				m_Tiles = new PlacementTile[dimensions.x, dimensions.y];
-
-				for (int y = 0; y < dimensions.y; y++)
+				for (int x = 0; x < dimensions.x; x++)
 				{
-					for (int x = 0; x < dimensions.x; x++)
-					{
-						Vector3 targetPos = GridToWorld(new Vector2Int(x, y), new Vector2Int(1, 1));
-						targetPos.y += 0.01f;
-						PlacementTile newTile = Instantiate(tileToUse);
-						newTile.transform.parent = tilesParent.transform;
-						newTile.transform.position = targetPos;
-						newTile.transform.localRotation = Quaternion.identity;
+					Vector3 targetPos = GridToWorld(new Vector2Int(x, y), new Vector2Int(1, 1));
+					targetPos.y += 0.01f;
+					PlacementTile newTile = Instantiate(tileToUse);
+					newTile.transform.parent = tilesParent.transform;
+					newTile.transform.position = targetPos;
+					newTile.transform.localRotation = Quaternion.identity;
 
-						m_Tiles[x, y] = newTile;
-						newTile.SetState(PlacementTileState.Empty);
-					}
+					m_Tiles[x, y] = newTile;
+					newTile.SetState(PlacementTileState.Empty);
+					newTile.TileIndex = new Vector2Int(y, x);
 				}
 			}
 		}
-        #if UNITY_EDITOR
+
+		public PlacementTile[,] GetField()
+		{
+			return m_Tiles;
+		}
+
+#if UNITY_EDITOR
 		/// <summary>
 		/// On editor/inspector validation, make sure we size our collider correctly.
 		/// Also make sure the collider component is hidden so nobody can mess with its settings to ensure its integrity.

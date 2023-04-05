@@ -1,3 +1,4 @@
+using Flower;
 using UnityEngine;
 
 public class BuildManager : MonoBehaviour
@@ -9,6 +10,8 @@ public class BuildManager : MonoBehaviour
     private HouseBlueprint houseToBuild;
     public static BuildManager instance;
     public HouseBlueprint house;
+    public HousePlacementArea Area;
+
     void Awake()
     {
         if(instance != null)
@@ -19,8 +22,6 @@ public class BuildManager : MonoBehaviour
         instance = this;
         
     }
-
-    
 
     //public GameObject buildingPrefab;
 
@@ -36,7 +37,9 @@ public class BuildManager : MonoBehaviour
             Debug.Log("Not enough money");
             return;
         }
+
         PlayerStats.Money -= houseToBuild.cost;
+
         HouseBlueprint building = (HouseBlueprint)Instantiate(houseToBuild, node.GetMasloPosition(), Quaternion.identity);
         if(building.CompareTag("maslo"))
         {
@@ -58,6 +61,8 @@ public class BuildManager : MonoBehaviour
         }
         
         node.building = building;
+        node.building.transform.parent = node.transform;
+        Debug.Log(node.GetNodeIndex());
     }
 
     public void SelectHouseToBuild(HouseBlueprint house)

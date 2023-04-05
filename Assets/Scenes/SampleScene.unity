@@ -762,7 +762,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 022fdb3a3d1427d41a0569f002060e5c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -961,6 +961,7 @@ MonoBehaviour:
   rotationMillOffset: {x: 3.528, y: 0, z: -2.477}
   rotationSmallHouseOffset: {x: 0, y: -30, z: 0}
   house: {fileID: 0}
+  Area: {fileID: 709990154}
 --- !u!114 &714297427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2205,6 +2206,10 @@ PrefabInstance:
     - target: {fileID: 6050661795515498664, guid: f056a7c2fef460b44b3d04662af31ef9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6050661795515498665, guid: f056a7c2fef460b44b3d04662af31ef9, type: 3}
+      propertyPath: Timer
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 6050661795515498665, guid: f056a7c2fef460b44b3d04662af31ef9, type: 3}
       propertyPath: player
