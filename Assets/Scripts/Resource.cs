@@ -1,20 +1,56 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Resource : MonoBehaviour
 {
-    public float Timer;
-    public float Counter;
-    public int moneyGiven;
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private float _baseTime;
+    [SerializeField] private int _moneyCount;
+
+    private float _currentTime;
+
+    private float _counter;
+    private Node _nodePlacement;
+
+    private bool _hasHouse = false;
+
+    private void Start()
     {
-        if(Counter >= Timer)
+        _nodePlacement = GetComponent<HouseBlueprint>().PlacementNode;
+        _nodePlacement.AbilityCountChanged.AddListener(HasHouse);
+        _hasHouse = _nodePlacement.CountOfAbility > 0;
+    }
+
+    private void OnDisable()
+    {
+        _nodePlacement.AbilityCountChanged.RemoveListener(HasHouse);
+    }
+
+    private void Update()
+    {
+        CollectingMoney();
+    }
+
+    private void CollectingMoney()
+    {
+        if (!_hasHouse)
+            return;
+
+        CalculateTime();
+        if (_counter >= _currentTime)
         {
-            PlayerStats.Money += moneyGiven;
-            Counter = 0;
+            PlayerStats.Money += _moneyCount;
+            _counter = 0;
         }
-        Counter += Time.deltaTime;
+
+        _counter += Time.deltaTime;
+    }
+
+    private void CalculateTime()
+    {
+        _currentTime = _baseTime - (_nodePlacement.CountOfAbility * 2);
+    }
+
+    private void HasHouse(bool hasHouse)
+    {
+        _hasHouse = hasHouse;
     }
 }

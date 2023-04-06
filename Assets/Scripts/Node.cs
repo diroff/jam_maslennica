@@ -1,5 +1,6 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class Node : MonoBehaviour
@@ -13,13 +14,18 @@ public class Node : MonoBehaviour
     public Vector3 positionOffsetMaslo;
     public Vector3 rotationHouseOffset;
 
+    [SerializeField] private int _maximumAbility = 4;
+
     private Vector2Int _indexOfNode;
     private bool _hasEffect = false;
+    private int _countOfAbility = 0;
+
+    public int CountOfAbility => _countOfAbility;
+    public UnityEvent<bool> AbilityCountChanged;
 
     [Header("Optional")]
 
     public HouseBlueprint building;
-
     private MeshRenderer rend;
     private Color startColor;
 
@@ -79,10 +85,28 @@ public class Node : MonoBehaviour
         return _indexOfNode;
     }
 
-    public void PleaseWork()
+    public void AddAbility(int count)
     {
-        rend.material.color = new Color(15, 15, 15);
         _hasEffect = true;
+        _countOfAbility += count;
+
+        if(_countOfAbility > _maximumAbility)
+            _countOfAbility = _maximumAbility;
+
+        SetPointColor();
+        AbilityCountChanged?.Invoke(_hasEffect);
+    }
+
+    public void SetPointColor()
+    {
+        if (_countOfAbility == 1)
+            rend.material.color = Color.red;
+        else if (_countOfAbility == 2)
+            rend.material.color = Color.yellow;
+        else if (_countOfAbility == 3)
+            rend.material.color = Color.blue;
+        else if (_countOfAbility == 4)
+            rend.material.color = Color.green;
     }
 
     void OnMouseDown()

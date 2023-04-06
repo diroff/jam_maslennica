@@ -29,10 +29,15 @@ public class BuildManager : MonoBehaviour
     public bool CanBuild{get{ return houseToBuild != null;}}
     // public bool HasMoney{get{ return PlayerStats.Money >= turretToBuild.cost;}}
     
+    private bool CostChecker()
+    {
+        return PlayerStats.Money >= houseToBuild.Cost;
+    }
+
 
     public void BuildBuildingOn(Node node)
     {
-        if(PlayerStats.Money < houseToBuild.cost)
+        if(!CostChecker())
         {
             Debug.Log("Not enough money");
             return;
@@ -46,7 +51,7 @@ public class BuildManager : MonoBehaviour
             }
         }
 
-        PlayerStats.Money -= houseToBuild.cost;
+        PlayerStats.Money -= houseToBuild.Cost;
 
         HouseBlueprint building = (HouseBlueprint)Instantiate(houseToBuild, node.GetMasloPosition(), Quaternion.identity);
         if(building.CompareTag("maslo"))
@@ -71,6 +76,7 @@ public class BuildManager : MonoBehaviour
         
         node.building = building;
         node.building.transform.parent = node.transform;
+        building.SetNode(node);
     }
 
     private void AddSquareEffect(Node startPoint, int countMultiply) //countMultiply = количество слоев квадрата
@@ -85,7 +91,7 @@ public class BuildManager : MonoBehaviour
                 if (j < 0 || j > Area.dimensions.y - 1)
                     continue;
 
-                Area.m_Tiles[i, j].TakeNode().PleaseWork();
+                Area.m_Tiles[i, j].TakeNode().AddAbility(1);
             }
         }
     }

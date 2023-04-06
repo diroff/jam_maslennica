@@ -5,8 +5,18 @@ using UnityEngine;
 
 public class HouseBlueprint : MonoBehaviour
 {
-    public GameObject prefab;
-    public int cost;
+    [SerializeField] private GameObject _prefab;
+    [SerializeField] private int _cost;
+
+    private Node _placementNode;
+    public Node PlacementNode => _placementNode;
+
+    public int Cost => _cost;
+
+    public void SetNode(Node node)
+    {
+        _placementNode = node;
+    }
 
     public virtual void MakeEffect()
     {

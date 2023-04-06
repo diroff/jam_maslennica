@@ -98,8 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3ba8e4c2c26ab540a0cdeb534a2b839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7004727757589498157}
-  cost: 25
+  _prefab: {fileID: 7004727757589498157}
+  _cost: 25
+  _hasResource: 1
 --- !u!114 &7551451661607770440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +113,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1541049362dbc9c429388b799cc8cdde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Timer: 20
-  Counter: 0
-  moneyGiven: 1
+  _baseTime: 12
+  _moneyCount: 10
