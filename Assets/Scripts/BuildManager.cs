@@ -37,6 +37,14 @@ public class BuildManager : MonoBehaviour
             Debug.Log("Not enough money");
             return;
         }
+        if (houseToBuild.CompareTag("mill"))
+        {
+            if (MillChecker(node, 2))
+            {
+                Debug.Log("В радиусе 2 клеток уже есть мельница!");
+                return;
+            }
+        }
 
         PlayerStats.Money -= houseToBuild.cost;
 
@@ -80,6 +88,29 @@ public class BuildManager : MonoBehaviour
                 Area.m_Tiles[i, j].TakeNode().PleaseWork();
             }
         }
+    }
+
+    private bool MillChecker(Node startPoint, int countMultiply)
+    {
+        for (int i = startPoint.GetNodeIndex().x - countMultiply; i <= startPoint.GetNodeIndex().x + countMultiply; i++)
+        {
+            if (i < 0 || i > Area.dimensions.x - 1)
+                continue;
+
+            for (int j = startPoint.GetNodeIndex().y - countMultiply; j <= startPoint.GetNodeIndex().y + countMultiply; j++)
+            {
+                if (j < 0 || j > Area.dimensions.y - 1)
+                    continue;
+
+                if (Area.m_Tiles[i, j].TakeNode().building == null)
+                    continue;
+
+                if (Area.m_Tiles[i, j].TakeNode().building.CompareTag("mill"))
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     public void SelectHouseToBuild(HouseBlueprint house)
