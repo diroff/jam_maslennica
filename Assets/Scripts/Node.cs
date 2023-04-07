@@ -1,4 +1,4 @@
-using UnityEditor.Experimental.GraphView;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class Node : MonoBehaviour
 {
     [SerializeField] private Color hoverColor;
+    [SerializeField] private List<Material> _buffedMaterial;
 
     [SerializeField] private int _maximumAbility = 4;
 
@@ -59,20 +60,14 @@ public class Node : MonoBehaviour
         if(_countOfAbility > _maximumAbility)
             _countOfAbility = _maximumAbility;
 
-        SetPointColor();
+        SetNodeMaterial();
         AbilityCountChanged?.Invoke(_hasEffect);
     }
 
-    public void SetPointColor()
+    public void SetNodeMaterial()
     {
-        if (_countOfAbility == 1)
-            rend.material.color = Color.red;
-        else if (_countOfAbility == 2)
-            rend.material.color = Color.yellow;
-        else if (_countOfAbility == 3)
-            rend.material.color = Color.blue;
-        else if (_countOfAbility == 4)
-            rend.material.color = Color.green;
+        rend.material = _buffedMaterial[_countOfAbility - 1];
+        startColor = rend.material.color;
     }
 
     private void OnMouseDown()
@@ -96,28 +91,11 @@ public class Node : MonoBehaviour
         if(EventSystem.current.IsPointerOverGameObject())
             return;
 
-        if (_hasEffect)
-            return;
-
-        rend.material.color = hoverColor; 
-        // if(!buildManager.CanBuild)
-        //     return;
-        
-        // if(buildManager.HasMoney)
-        // {
-        //     rend.material.color = hoverColor; 
-        // }
-        // else
-        // {
-        //     rend.material.color = notEnoughMoneyColor;
-        // }
+        rend.material.color = hoverColor;
     }
 
     private void OnMouseExit()
     {
-        if (_hasEffect)
-            return;
-
         rend.material.color = startColor;
     }
 }
