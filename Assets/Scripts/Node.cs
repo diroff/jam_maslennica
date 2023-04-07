@@ -7,20 +7,15 @@ public class Node : MonoBehaviour
 {
     [SerializeField] private Color hoverColor;
 
-    public Vector3 positionOffsetHouse;
-    public Vector3 positionOffsetMill;
-    public Vector3 positionOffsetSmallHouse;
-    public Vector3 positionOffsetTree;
-    public Vector3 positionOffsetMaslo;
-    public Vector3 rotationHouseOffset;
-
     [SerializeField] private int _maximumAbility = 4;
 
     private Vector2Int _indexOfNode;
     private bool _hasEffect = false;
     private int _countOfAbility = 0;
+    private BuildManager _buildManager;
 
     public int CountOfAbility => _countOfAbility;
+    public BuildManager BuildManager => _buildManager;
     public UnityEvent<bool> AbilityCountChanged;
 
     [Header("Optional")]
@@ -29,52 +24,23 @@ public class Node : MonoBehaviour
     private MeshRenderer rend;
     private Color startColor;
 
-    BuildManager buildManager;
-
-    public Vector3 GetHousePosition()
-    {
-        return transform.position + positionOffsetHouse;
-    }
-
-    public Vector3 GetMillPosition()
-    {
-        return transform.position + positionOffsetMill;
-    }
-
-    public Vector3 GetSmallHousePosition()
-    {
-        return transform.position + positionOffsetSmallHouse;
-    }
-    
-    public Vector3 GetTreePosition()
-    {
-        return transform.position + positionOffsetTree;
-    }
-
-    public Vector3 GetMasloPosition()
-    {
-        return transform.position + positionOffsetMaslo;
-    }
-
     public HouseBlueprint GetHouse()
     {
         return building;
     }
 
-    void Start()
+    private void Start()
     {
         rend = GetComponentInChildren<MeshRenderer>();
         startColor = rend.material.color;
-        buildManager = BuildManager.instance;
+        _buildManager = BuildManager.instance;
 
         if(building != null)
         {
-            building = (HouseBlueprint)Instantiate(building, GetTreePosition(), Quaternion.identity);
-            if(building.CompareTag("house"))
-            {
-                building.transform.position = GetHousePosition();
-                building.transform.Rotate(rotationHouseOffset.x, rotationHouseOffset.y, rotationHouseOffset.z);
-            }
+            building = Instantiate(building, transform.position, Quaternion.identity);
+            building.transform.parent = transform;
+            building.transform.localPosition = building.Position;
+            building.transform.localRotation = Quaternion.Euler(building.Rotation);
         }
 
         _indexOfNode = GetComponent<PlacementTile>().TileIndex;
@@ -109,11 +75,11 @@ public class Node : MonoBehaviour
             rend.material.color = Color.green;
     }
 
-    void OnMouseDown()
+    private void OnMouseDown()
     {
         if(EventSystem.current.IsPointerOverGameObject())
             return;
-        if(!buildManager.CanBuild)
+        if(!_buildManager.CanBuild)
             return;
         if(building != null)
         {
@@ -122,10 +88,10 @@ public class Node : MonoBehaviour
             return;
         }
         
-        buildManager.BuildBuildingOn(this);
+        _buildManager.BuildBuildingOn(this);
     }
 
-    void OnMouseEnter()
+    private void OnMouseEnter()
     {
         if(EventSystem.current.IsPointerOverGameObject())
             return;
@@ -147,7 +113,7 @@ public class Node : MonoBehaviour
         // }
     }
 
-    void OnMouseExit()
+    private void OnMouseExit()
     {
         if (_hasEffect)
             return;

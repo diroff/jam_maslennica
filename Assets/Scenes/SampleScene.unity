@@ -957,9 +957,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b27c6203e290744853e440a824c8df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationHouseOffset: {x: 3.276, y: -34.955, z: 1.852}
-  rotationMillOffset: {x: 3.528, y: 0, z: -2.477}
-  rotationSmallHouseOffset: {x: 0, y: -30, z: 0}
   house: {fileID: 0}
   Area: {fileID: 709990154}
 --- !u!114 &714297427
@@ -1029,7 +1026,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maslenica: {fileID: 3742502020358834348, guid: 4170bbd712137cd468722d645f45005a, type: 3}
   mill: {fileID: -7500663190980937317, guid: df50be969724bd94599e0bf03c7b554f, type: 3}
-  smallHouse: {fileID: 5227559284749079211, guid: b3020deb71ad89e459d8c468890d07ba, type: 3}
+  smallHouse: {fileID: -4214790783215275127, guid: b3020deb71ad89e459d8c468890d07ba, type: 3}
 --- !u!1 &1093162753
 GameObject:
   m_ObjectHideFlags: 0

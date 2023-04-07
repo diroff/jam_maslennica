@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5422812366872006859}
   - component: {fileID: 1770886673619715821}
-  - component: {fileID: 5227559284749079211}
+  - component: {fileID: -4214790783215275127}
   m_Layer: 0
   m_Name: SmallHouse
   m_TagString: small house
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5227559284749079211
+--- !u!114 &-4214790783215275127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,9 +94,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2751327575865181972}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3ba8e4c2c26ab540a0cdeb534a2b839, type: 3}
+  m_Script: {fileID: 11500000, guid: 8aee3169a3628aa43acdb6a1c76157df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 2751327575865181972}
+  _prefab: {fileID: 0}
   _cost: 10
-  _hasResource: 0
+  _radiusBlocker: 0
+  _position: {x: 0.2, y: 0.85, z: -0.2}
+  _rotation: {x: 45, y: -45, z: 0}
+  _cointMultiply: 2

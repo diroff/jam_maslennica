@@ -98,9 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3ba8e4c2c26ab540a0cdeb534a2b839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 6087832163801042261}
+  _prefab: {fileID: 0}
   _cost: 15
-  _hasResource: 0
+  _position: {x: 0.28, y: 1, z: -0.28}
+  _rotation: {x: 45, y: -45, z: 0}
 --- !u!114 &-7908635586494843338
 MonoBehaviour:
   m_ObjectHideFlags: 0

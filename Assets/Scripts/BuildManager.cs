@@ -1,102 +1,57 @@
-using Flower;
 using UnityEngine;
 
 public class BuildManager : MonoBehaviour
 {
-    
-    public Vector3 rotationHouseOffset;
-    public Vector3 rotationMillOffset;
-    public Vector3 rotationSmallHouseOffset;
-    private HouseBlueprint houseToBuild;
     public static BuildManager instance;
     public HouseBlueprint house;
     public HousePlacementArea Area;
+    private HouseBlueprint houseToBuild;
 
-    void Awake()
+    private void Awake()
     {
-        if(instance != null)
+        if (instance != null)
         {
             Debug.Log("More than one BM in scene!");
             return;
         }
+
         instance = this;
-        
     }
 
-    //public GameObject buildingPrefab;
+    public bool CanBuild { get { return houseToBuild != null; } }
 
-
-    public bool CanBuild{get{ return houseToBuild != null;}}
-    // public bool HasMoney{get{ return PlayerStats.Money >= turretToBuild.cost;}}
-    
     private bool CostChecker()
     {
         return PlayerStats.Money >= houseToBuild.Cost;
     }
 
-
     public void BuildBuildingOn(Node node)
     {
-        if(!CostChecker())
+        if (!CostChecker())
         {
             Debug.Log("Not enough money");
             return;
         }
-        if (houseToBuild.CompareTag("mill"))
+
+        if (RadiusChecker(node, houseToBuild.RadiusBlocker))
         {
-            if (MillChecker(node, 2))
-            {
-                Debug.Log("В радиусе 2 клеток уже есть мельница!");
-                return;
-            }
+            Debug.Log($"В радиусе {houseToBuild.RadiusBlocker} клеток уже есть такое здание!");
+            return;
         }
 
         PlayerStats.Money -= houseToBuild.Cost;
 
-        HouseBlueprint building = (HouseBlueprint)Instantiate(houseToBuild, node.GetMasloPosition(), Quaternion.identity);
-        if(building.CompareTag("maslo"))
-        {
-            building.transform.position = transform.position + node.GetMasloPosition();
-        }
-        // if(building.CompareTag("house"))
-        // {
-        //     building.transform.Rotate(rotationHouseOffset.x, rotationHouseOffset.y, rotationHouseOffset.z);
-        // }
-        if(building.CompareTag("mill"))
-        {
-            building.transform.position = transform.position + node.GetMillPosition();
-            building.transform.Rotate(rotationMillOffset.x, rotationMillOffset.y, rotationMillOffset.z);
-        }
-        if(building.CompareTag("small house"))
-        {
-            building.transform.position = transform.position + node.GetSmallHousePosition();
-            building.transform.Rotate(rotationSmallHouseOffset.x, rotationSmallHouseOffset.y, rotationSmallHouseOffset.z);
-            AddSquareEffect(node, 2);
-        }
-        
+        HouseBlueprint building = Instantiate(houseToBuild, node.transform.position, Quaternion.identity);
+
         node.building = building;
         node.building.transform.parent = node.transform;
+        building.transform.localPosition = building.Position;
+        building.transform.localRotation = Quaternion.Euler(building.Rotation);
         building.SetNode(node);
+        building.MakeEffect();
     }
 
-    private void AddSquareEffect(Node startPoint, int countMultiply) //countMultiply = количество слоев квадрата
-    {
-        for (int i = startPoint.GetNodeIndex().x - countMultiply; i <= startPoint.GetNodeIndex().x + countMultiply; i++)
-        {
-            if (i < 0 || i > Area.dimensions.x - 1)
-                continue;
-
-            for (int j = startPoint.GetNodeIndex().y - countMultiply; j <= startPoint.GetNodeIndex().y + countMultiply; j++)
-            {
-                if (j < 0 || j > Area.dimensions.y - 1)
-                    continue;
-
-                Area.m_Tiles[i, j].TakeNode().AddAbility(1);
-            }
-        }
-    }
-
-    private bool MillChecker(Node startPoint, int countMultiply)
+    private bool RadiusChecker(Node startPoint, int countMultiply)
     {
         for (int i = startPoint.GetNodeIndex().x - countMultiply; i <= startPoint.GetNodeIndex().x + countMultiply; i++)
         {
@@ -111,7 +66,7 @@ public class BuildManager : MonoBehaviour
                 if (Area.m_Tiles[i, j].TakeNode().building == null)
                     continue;
 
-                if (Area.m_Tiles[i, j].TakeNode().building.CompareTag("mill"))
+                if (Area.m_Tiles[i, j].TakeNode().building.CompareTag(houseToBuild.tag))
                     return true;
             }
         }

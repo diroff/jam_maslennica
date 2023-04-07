@@ -100,7 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefab: {fileID: 7004727757589498157}
   _cost: 25
-  _hasResource: 1
+  _radiusBlocker: 2
+  _position: {x: 0, y: 1, z: -0.1}
+  _rotation: {x: 45, y: -45, z: 0}
 --- !u!114 &7551451661607770440
 MonoBehaviour:
   m_ObjectHideFlags: 0
