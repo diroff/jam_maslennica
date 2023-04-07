@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8320680568620802489}
   - component: {fileID: 6372896935921797121}
-  - component: {fileID: 3742502020358834348}
+  - component: {fileID: -1068247212994976910}
   - component: {fileID: -7908635586494843338}
   m_Layer: 0
   m_Name: ScareCrow
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3742502020358834348
+--- !u!114 &-1068247212994976910
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,13 +95,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6087832163801042261}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3ba8e4c2c26ab540a0cdeb534a2b839, type: 3}
+  m_Script: {fileID: 11500000, guid: 726ad22cc8d392b4da4bc6d08bb6c98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _prefab: {fileID: 0}
   _cost: 15
+  _radiusBlocker: 0
   _position: {x: 0.28, y: 1, z: -0.28}
   _rotation: {x: 45, y: -45, z: 0}
+  _countOfZones: 3
 --- !u!114 &-7908635586494843338
 MonoBehaviour:
   m_ObjectHideFlags: 0
