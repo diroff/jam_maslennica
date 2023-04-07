@@ -1,37 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    BuildManager buildManager;
+    [SerializeField] private HouseBlueprint _scareCrow;
+    [SerializeField] private HouseBlueprint _mill;
+    [SerializeField] private HouseBlueprint _smallHouse;
 
-    public HouseBlueprint maslenica;
-    public HouseBlueprint mill;
-    public HouseBlueprint smallHouse;
+    private BuildManager _buildManager;
 
-    void Start()
+    private void Start()
     {
-        buildManager = BuildManager.instance;
+        _buildManager = BuildManager.instance;
     }
+
     public void SelectHouse()
     {
         Debug.Log("Maslenica Pusrchased");
-        buildManager.SelectHouseToBuild(maslenica);
-        
+        _buildManager.SelectHouseToBuild(_scareCrow);
     }
+
     public void SelectMill()
     {
         Debug.Log("Mill Pusrchased");
-        buildManager.SelectHouseToBuild(mill);
-        
+        _buildManager.SelectHouseToBuild(_mill);
     }
 
     public void SelectSmallHouse()
     {
         Debug.Log("Small House Pusrchased");
-        buildManager.SelectHouseToBuild(smallHouse);
-        
+        _buildManager.SelectHouseToBuild(_smallHouse);
     }
-
 }

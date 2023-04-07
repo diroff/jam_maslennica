@@ -1,14 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Blin : MonoBehaviour
 {
-    public Text blinTaken;
+    [SerializeField] private Text _moneyCount;
+    private PlayerStats _player;
 
-    public void Update()
+    private void Awake()
     {
-        blinTaken.text = PlayerStats.Money.ToString();
+        _player = PlayerStats.Player;
+    }
+
+    private void OnEnable()
+    {
+        _player.CountOfMoneyChanged.AddListener(DisplayMoneyCount);
+    }
+
+    private void OnDisable()
+    {
+        _player.CountOfMoneyChanged.RemoveListener(DisplayMoneyCount);
+    }
+
+    private void DisplayMoneyCount(int count)
+    {
+        _moneyCount.text = count.ToString();
     }
 }

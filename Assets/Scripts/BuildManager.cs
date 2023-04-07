@@ -6,6 +6,7 @@ public class BuildManager : MonoBehaviour
     public HouseBlueprint house;
     public HousePlacementArea Area;
     private HouseBlueprint houseToBuild;
+    private PlayerStats _player;
 
     private void Awake()
     {
@@ -18,11 +19,19 @@ public class BuildManager : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        _player = PlayerStats.Player;
+
+        if (_player != null)
+            Debug.Log("Чел в билде есть да");
+    }
+
     public bool CanBuild { get { return houseToBuild != null; } }
 
     private bool CostChecker()
     {
-        return PlayerStats.Money >= houseToBuild.Cost;
+        return _player.Money >= houseToBuild.Cost;
     }
 
     public void BuildBuildingOn(Node node)
@@ -39,7 +48,7 @@ public class BuildManager : MonoBehaviour
             return;
         }
 
-        PlayerStats.Money -= houseToBuild.Cost;
+        _player.AddMoney(-houseToBuild.Cost);
 
         HouseBlueprint building = Instantiate(houseToBuild, node.transform.position, Quaternion.identity);
 

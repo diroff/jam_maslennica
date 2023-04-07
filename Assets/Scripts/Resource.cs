@@ -9,11 +9,13 @@ public class Resource : MonoBehaviour
 
     private float _counter;
     private Node _nodePlacement;
+    private PlayerStats _player;
 
     private bool _hasHouse = false;
 
     private void Start()
     {
+        _player = PlayerStats.Player;
         _nodePlacement = GetComponent<HouseBlueprint>().PlacementNode;
         _nodePlacement.AbilityCountChanged.AddListener(HasHouse);
         _hasHouse = _nodePlacement.CountOfAbility > 0;
@@ -37,7 +39,7 @@ public class Resource : MonoBehaviour
         CalculateTime();
         if (_counter >= _currentTime)
         {
-            PlayerStats.Money += _moneyCount;
+            _player.AddMoney(_moneyCount);
             _counter = 0;
         }
 

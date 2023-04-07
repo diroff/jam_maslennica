@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3742502020358834348}
   - component: {fileID: -7908635586494843338}
   m_Layer: 0
-  m_Name: maslenica
+  m_Name: ScareCrow
   m_TagString: maslo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
