@@ -4,7 +4,8 @@ public enum PlacementTileState
 {
 	Filled,
 	Empty,
-	Buffed
+	Buffed,
+	Infected
 }
 
 public class PlacementTile : MonoBehaviour
@@ -12,11 +13,14 @@ public class PlacementTile : MonoBehaviour
 	public Material emptyMaterial;
 	public Material filledMaterial;
 	public Material buffedMaterial;
-
+	public Material infectedMaterial;
 	public Renderer tileRenderer;
 	[HideInInspector]
 	public Vector2Int TileIndex;
-
+	private void Start()
+	{
+		tileRenderer = GetComponent<MeshRenderer>();
+	}
 	public void SetState(PlacementTileState newState)
 	{
 		switch (newState)
@@ -37,6 +41,10 @@ public class PlacementTile : MonoBehaviour
 				if (tileRenderer != null & buffedMaterial != null)
 					tileRenderer.sharedMaterial = buffedMaterial;
 
+				break;
+			case PlacementTileState.Infected:
+				if (tileRenderer != null & infectedMaterial != null)
+					tileRenderer.sharedMaterial = infectedMaterial;
 				break;
 		}
 	}

@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aee3169a3628aa43acdb6a1c76157df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 0}
+  _prefab: {fileID: 2751327575865181972}
   _cost: 10
   _radiusBlocker: 0
   _position: {x: 0.2, y: 0.85, z: -0.2}

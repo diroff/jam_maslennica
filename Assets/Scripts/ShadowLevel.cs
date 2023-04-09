@@ -17,8 +17,8 @@ public class ShadowLevel : MonoBehaviour
 
     public void Update()
     {
-        fireStatus.fillAmount -= 1.0f/Timer * Time.deltaTime;
-        if(fireStatus.fillAmount == 0f)
+        fireStatus.fillAmount += 1.0f/Timer * Time.deltaTime;
+        if(fireStatus.fillAmount == 1f)
         {
             player.Dead(number);
         }

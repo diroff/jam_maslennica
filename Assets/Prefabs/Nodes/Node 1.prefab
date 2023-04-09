@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 85f05501c97abc44d8659e984ebc8056, type: 2}
+  - {fileID: 2100000, guid: f8dca35df15488749ad2f97f11a8bd50, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,12 +112,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverColor: {r: 0, g: 0, b: 0, a: 0}
-  positionOffsetHouse: {x: 0, y: 0.028, z: -1.86}
-  positionOffsetMill: {x: 0, y: 0.748, z: -1.19}
-  positionOffsetSmallHouse: {x: 0, y: 0.499, z: -1.431}
-  positionOffsetTree: {x: 0, y: 0, z: 0}
-  positionOffsetMaslo: {x: 0, y: 0.518, z: -2.39369}
-  rotationHouseOffset: {x: 0, y: 0, z: 0}
+  _maximumAbility: 4
+  AbilityCountChanged:
+    m_PersistentCalls:
+      m_Calls: []
   building: {fileID: 0}
 --- !u!114 &6003816017472598994
 MonoBehaviour:
@@ -134,4 +132,6 @@ MonoBehaviour:
   emptyMaterial: {fileID: 2100000, guid: 85f05501c97abc44d8659e984ebc8056, type: 2}
   filledMaterial: {fileID: 2100000, guid: cf553a74777440e40824ca8011fbaa5e, type: 2}
   buffedMaterial: {fileID: 2100000, guid: 6cdd9a94fa6188c4b844991944d36b1d, type: 2}
-  tileRenderer: {fileID: 0}
+  infectedMaterial: {fileID: 2100000, guid: f8dca35df15488749ad2f97f11a8bd50, type: 2}
+  tileRenderer: {fileID: 5488491662784842786}
+  TileIndex: {x: 3, y: 19}
