@@ -14,10 +14,12 @@ public class Node : MonoBehaviour
     private bool _hasEffect = false;
     private int _countOfAbility = 0;
     private BuildManager _buildManager;
+    private float _darkness = 0f;
 
     public int CountOfAbility => _countOfAbility;
     public BuildManager BuildManager => _buildManager;
     public UnityEvent<bool> AbilityCountChanged;
+    public float Darkness => _darkness;
 
     [Header("Optional")]
 

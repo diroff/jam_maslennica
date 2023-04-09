@@ -5,17 +5,22 @@ public enum PlacementTileState
 {
 	Filled,
 	Empty,
+	Infected
 }
 
 public class PlacementTile : MonoBehaviour
 {
 	public Material emptyMaterial;
 	public Material filledMaterial;
+	public Material infectedMaterial;
 	public Renderer tileRenderer;
 
 	[HideInInspector]
 	public Vector2Int TileIndex;
-
+	private void Start()
+	{
+		tileRenderer = GetComponent<MeshRenderer>();
+	}
 	public void SetState(PlacementTileState newState)
 	{
 		switch (newState)
@@ -31,7 +36,12 @@ public class PlacementTile : MonoBehaviour
 					tileRenderer.sharedMaterial = emptyMaterial;
 
 				break;
-        }
+
+			case PlacementTileState.Infected:
+				if (tileRenderer != null & infectedMaterial != null)
+					tileRenderer.sharedMaterial = infectedMaterial;
+				break;
+		}
 	}
 
 	public Node TakeNode()
