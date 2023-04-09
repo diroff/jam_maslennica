@@ -112,6 +112,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverColor: {r: 0, g: 0, b: 0, a: 0}
+  _buffedMaterial:
+  - {fileID: 2100000, guid: 6cdd9a94fa6188c4b844991944d36b1d, type: 2}
+  - {fileID: 2100000, guid: 542292ae49120f34ca4cfd29cc21b0a0, type: 2}
+  - {fileID: 2100000, guid: 017e8959b9d999b41b311f6cd6d5c75f, type: 2}
+  - {fileID: 2100000, guid: 983cd3d1f1dbdba4cb798d3b819a2119, type: 2}
   _maximumAbility: 4
   AbilityCountChanged:
     m_PersistentCalls:
@@ -131,7 +136,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emptyMaterial: {fileID: 2100000, guid: 85f05501c97abc44d8659e984ebc8056, type: 2}
   filledMaterial: {fileID: 2100000, guid: cf553a74777440e40824ca8011fbaa5e, type: 2}
-  buffedMaterial: {fileID: 2100000, guid: 6cdd9a94fa6188c4b844991944d36b1d, type: 2}
   infectedMaterial: {fileID: 2100000, guid: f8dca35df15488749ad2f97f11a8bd50, type: 2}
   tileRenderer: {fileID: 5488491662784842786}
   TileIndex: {x: 3, y: 19}
