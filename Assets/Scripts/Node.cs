@@ -68,7 +68,7 @@ public class Node : MonoBehaviour
 
     public void SetBuffedMaterial()
     {
-        rend.material = _buffedMaterial[_countOfAbility - 1];
+        rend.material = _buffedMaterial[0];
         startColor = rend.material.color;
     }
 
