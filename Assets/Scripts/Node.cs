@@ -62,13 +62,12 @@ public class Node : MonoBehaviour
         if(_countOfAbility > _maximumAbility)
             _countOfAbility = _maximumAbility;
 
-        SetNodeMaterial();
         AbilityCountChanged?.Invoke(_hasEffect);
     }
 
     public void SetNodeMaterial()
     {
-        rend.material = _buffedMaterial[_countOfAbility - 1];
+        rend.material = _buffedMaterial[0];
         startColor = rend.material.color;
     }
 
