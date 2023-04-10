@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 849098361243352102}
   - component: {fileID: 3957056916554699805}
-  - component: {fileID: -7500663190980937317}
   - component: {fileID: 7551451661607770440}
+  - component: {fileID: 7106292767140510297}
   m_Layer: 0
   m_Name: Mill
   m_TagString: mill
@@ -86,23 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-7500663190980937317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7004727757589498157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3ba8e4c2c26ab540a0cdeb534a2b839, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _prefab: {fileID: 7004727757589498157}
-  _cost: 25
-  _radiusBlocker: 2
-  _position: {x: 0, y: 1, z: -0.1}
-  _rotation: {x: 45, y: -45, z: 0}
 --- !u!114 &7551451661607770440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,3 +100,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseTime: 12
   _moneyCount: 10
+--- !u!114 &7106292767140510297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7004727757589498157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4167b064041d94941946f1a1d7d4d6bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 7004727757589498157}
+  _cost: 25
+  _radiusBlocker: 2
+  _position: {x: 0, y: 1, z: -0.1}
+  _rotation: {x: 45, y: -45, z: 0}

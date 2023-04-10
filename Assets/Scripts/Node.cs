@@ -7,6 +7,7 @@ public class Node : MonoBehaviour
 {
     [SerializeField] private Color hoverColor;
     [SerializeField] private List<Material> _buffedMaterial;
+    [SerializeField] private Material _millMaterial;
 
     [SerializeField] private int _maximumAbility = 4;
 
@@ -62,13 +63,18 @@ public class Node : MonoBehaviour
         if(_countOfAbility > _maximumAbility)
             _countOfAbility = _maximumAbility;
 
-        SetNodeMaterial();
         AbilityCountChanged?.Invoke(_hasEffect);
     }
 
-    public void SetNodeMaterial()
+    public void SetBuffedMaterial()
     {
         rend.material = _buffedMaterial[_countOfAbility - 1];
+        startColor = rend.material.color;
+    }
+
+    public void SetMillZone()
+    {
+        rend.material = _millMaterial;
         startColor = rend.material.color;
     }
 
