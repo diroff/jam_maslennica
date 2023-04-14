@@ -928,7 +928,7 @@ MonoBehaviour:
   _house: {fileID: 709990154}
   _indexOfNode: {x: 0, y: 0}
   _infectedTile: {fileID: 0}
-  _timer: 0
+  _countMultiply: 1
 --- !u!1 &714297423
 GameObject:
   m_ObjectHideFlags: 0
@@ -2225,8 +2225,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6050661795515498665, guid: f056a7c2fef460b44b3d04662af31ef9, type: 3}
+      propertyPath: dark
+      value: 
+      objectReference: {fileID: 709990157}
+    - target: {fileID: 6050661795515498665, guid: f056a7c2fef460b44b3d04662af31ef9, type: 3}
       propertyPath: Timer
-      value: 1000
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6050661795515498665, guid: f056a7c2fef460b44b3d04662af31ef9, type: 3}
       propertyPath: player

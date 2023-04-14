@@ -8,6 +8,8 @@ public class ShadowLevel : MonoBehaviour
     
     public int number;
     public PlayerStats player;
+    public Darkness dark;
+    [SerializeField]private float _timer;
 
     public void Awake()
     {
@@ -18,6 +20,16 @@ public class ShadowLevel : MonoBehaviour
     public void Update()
     {
         fireStatus.fillAmount += 1.0f/Timer * Time.deltaTime;
+        if((fireStatus.fillAmount >= 0.25f) && (fireStatus.fillAmount < 0.5f))
+        {
+            if (_timer >= 2f)
+            {
+                _timer = 0;
+                dark.SetRandomDark();
+            }
+            _timer += Time.deltaTime;
+            
+        }
         if(fireStatus.fillAmount == 1f)
         {
             player.Dead(number);

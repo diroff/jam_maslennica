@@ -7,6 +7,7 @@ public class Node : MonoBehaviour
 {
     [SerializeField] private Color hoverColor;
     [SerializeField] private List<Material> _buffedMaterial;
+    [SerializeField] private Material _infectedMaterial;
 
     [SerializeField] private int _maximumAbility = 4;
 
@@ -69,6 +70,12 @@ public class Node : MonoBehaviour
     public void SetNodeMaterial()
     {
         rend.material = _buffedMaterial[_countOfAbility - 1];
+        startColor = rend.material.color;
+    }
+
+    public void Infected()
+    {
+        rend.material = _infectedMaterial;
         startColor = rend.material.color;
     }
 
