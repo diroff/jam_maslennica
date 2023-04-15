@@ -7,9 +7,11 @@ public class Darkness : MonoBehaviour
     [SerializeField] private HousePlacementArea _house;
     [SerializeField] private Vector2Int _indexOfNode;
     [SerializeField] private PlacementTile[,] _tile;
-    [SerializeField] private PlacementTile _infectedTile;
-    [SerializeField] private float _timer;
+    [SerializeField] private Node _infectedTile;
+    [SerializeField] private int _countMultiply;
     
+
+
     private void Start()
     {
         _tile = _house.m_Tiles;
@@ -20,29 +22,38 @@ public class Darkness : MonoBehaviour
         foreach(var tile in _tile)
         {
             _indexOfNode = tile.TileIndex;
-            //Debug.Log(_indexOfNode);
         }
 
         
     }
 
-    private void Update()
+    public void SetRandomDark()
     {
-        InfectionNode();
+        _indexOfNode.x = Random.Range(0, _indexOfNode.x);
+        _indexOfNode.y = Random.Range(0, _indexOfNode.y);
+        _infectedTile = _house.m_Tiles[_indexOfNode.x, _indexOfNode.y].TakeNode();
+        AddSquareEffect(_infectedTile, _countMultiply);
     }
 
-    private void InfectionNode()
+
+    private void AddSquareEffect(Node startPoint, int countMultiply) //countMultiply = количество слоев квадрата
     {
-        if (_timer >= 10f)
+        
+        for (int i = startPoint.GetNodeIndex().x - countMultiply; i <= startPoint.GetNodeIndex().x + countMultiply; i++)
         {
-            _timer = 0;
-            _indexOfNode.x = Random.Range(0, _indexOfNode.x);
-            _indexOfNode.y = Random.Range(0, _indexOfNode.y);
-            _infectedTile = _house.m_Tiles[_indexOfNode.x, _indexOfNode.y];
-            _infectedTile.SetState(PlacementTileState.Infected);
+            if (i < 0 || i > _house.dimensions.x - 1)
+                continue;
+
+            for (int j = startPoint.GetNodeIndex().y - countMultiply; j <= startPoint.GetNodeIndex().y + countMultiply; j++)
+            {
+                if (j < 0 || j > _house.dimensions.y - 1)
+                    continue;
+
+                var _node = _house.m_Tiles[i, j].TakeNode();
+                _node.Infected();
+            }
         }
-        _timer += Time.deltaTime;
     }
-            
+
 
 }

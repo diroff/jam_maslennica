@@ -7,8 +7,9 @@ public class Node : MonoBehaviour
 {
     [SerializeField] private Color hoverColor;
     [SerializeField] private List<Material> _buffedMaterial;
-    [SerializeField] private Material _millMaterial;
 
+    [SerializeField] private Material _millMaterial;
+    [SerializeField] private Material _infectedMaterial;
     [SerializeField] private int _maximumAbility = 4;
 
     private Vector2Int _indexOfNode;
@@ -75,6 +76,12 @@ public class Node : MonoBehaviour
     public void SetMillZone()
     {
         rend.material = _millMaterial;
+        startColor = rend.material.color;
+    }
+
+    public void Infected()
+    {
+        rend.material = _infectedMaterial;
         startColor = rend.material.color;
     }
 
