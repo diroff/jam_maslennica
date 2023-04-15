@@ -2230,7 +2230,7 @@ PrefabInstance:
       objectReference: {fileID: 709990157}
     - target: {fileID: 6050661795515498665, guid: f056a7c2fef460b44b3d04662af31ef9, type: 3}
       propertyPath: Timer
-      value: 50
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 6050661795515498665, guid: f056a7c2fef460b44b3d04662af31ef9, type: 3}
       propertyPath: player

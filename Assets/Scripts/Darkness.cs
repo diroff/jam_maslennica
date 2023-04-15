@@ -29,8 +29,8 @@ public class Darkness : MonoBehaviour
 
     public void SetRandomDark()
     {
-        _indexOfNode.x = Random.Range(0, _indexOfNode.x);
-        _indexOfNode.y = Random.Range(0, _indexOfNode.y);
+        _indexOfNode.x = Random.Range(0, _indexOfNode.x + 1);
+        _indexOfNode.y = Random.Range(0, _indexOfNode.y + 1);
         _infectedTile = _house.m_Tiles[_indexOfNode.x, _indexOfNode.y].TakeNode();
         AddSquareEffect(_infectedTile, _countMultiply);
     }
