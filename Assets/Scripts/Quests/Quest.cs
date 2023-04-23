@@ -32,7 +32,7 @@ public class Quest : MonoBehaviour
 
     protected void CheckValue()
     {
-        if (CurrentValue > NeedToEnd)
+        if (CurrentValue >= NeedToEnd)
         {
             _isFinished = true;
             QuestEnded?.Invoke();

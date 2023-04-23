@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Events;
+
 public class BuildManager : MonoBehaviour
 {
     public static BuildManager instance;
@@ -6,6 +8,8 @@ public class BuildManager : MonoBehaviour
     public HousePlacementArea Area;
     private HouseBlueprint houseToBuild;
     private PlayerStats _player;
+
+    public UnityEvent<HouseBlueprint> HouseBuilded;
 
     private void Awake()
     {
@@ -47,6 +51,7 @@ public class BuildManager : MonoBehaviour
         _player.AddMoney(-houseToBuild.Cost);
 
         HouseBlueprint building = Instantiate(houseToBuild, node.transform.position, Quaternion.identity);
+        HouseBuilded?.Invoke(houseToBuild);
 
         node.building = building;
         node.building.transform.parent = node.transform;
