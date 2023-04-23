@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class BuildManager : MonoBehaviour
 {
     public static BuildManager instance;
@@ -22,9 +21,6 @@ public class BuildManager : MonoBehaviour
     private void Start()
     {
         _player = PlayerStats.Player;
-
-        if (_player != null)
-            Debug.Log("Чел в билде есть да");
     }
 
     public bool CanBuild { get { return houseToBuild != null; } }
