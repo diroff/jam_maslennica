@@ -1,9 +1,9 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Blin : MonoBehaviour
 {
-    [SerializeField] private Text _moneyCount;
+    [SerializeField] private TextMeshProUGUI _moneyCount;
     private PlayerStats _player;
 
     private void Awake()
