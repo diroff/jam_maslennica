@@ -2004,7 +2004,9 @@ MonoBehaviour:
   _house: {fileID: 709990154}
   _indexOfNode: {x: 0, y: 0}
   _infectedTile: {fileID: 0}
+  _node: {fileID: 0}
   _countMultiply: 1
+  building: {fileID: 0}
 --- !u!1 &714297423
 GameObject:
   m_ObjectHideFlags: 0
@@ -5682,6 +5684,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 714297427}
+    - target: {fileID: 6050661795515498665, guid: f056a7c2fef460b44b3d04662af31ef9, type: 3}
+      propertyPath: building
+      value: 
+      objectReference: {fileID: -4214790783215275127, guid: b3020deb71ad89e459d8c468890d07ba, type: 3}
     - target: {fileID: 6050661795515498667, guid: f056a7c2fef460b44b3d04662af31ef9, type: 3}
       propertyPath: m_Name
       value: fire

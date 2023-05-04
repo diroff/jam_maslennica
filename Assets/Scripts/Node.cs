@@ -85,6 +85,21 @@ public class Node : MonoBehaviour
         startColor = rend.material.color;
     }
 
+    public void DisableEffect()
+    {
+        _hasEffect = false;
+    }
+
+    public void Destroying()
+    {
+        if (building != null)
+        {
+            Destroy(building);
+            Destroy(GetComponentInChildren<SpriteRenderer>());  
+        }
+    }
+    
+
     private void OnMouseDown()
     {
         if(EventSystem.current.IsPointerOverGameObject())
